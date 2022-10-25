@@ -6,9 +6,22 @@ defmodule ApiProjectWeb.UserController do
 
   action_fallback ApiProjectWeb.FallbackController
 
-  def index(conn, _params) do
+  def index(conn, params) do
+   email = params["email"]
+   username = params["username"]
+   if( email != nil && username != nil ) do
+      my_user =  %User{
+        email: email, 
+        username: username
+      } 
+      users = Account.list_one_user(my_user)
+      render(conn, "index.json", users: users)
+
+      IO.inspect(users)
+    else
     users = Account.list_users()
     render(conn, "index.json", users: users)
+    end
   end
 
   def create(conn, %{"user" => user_params}) do

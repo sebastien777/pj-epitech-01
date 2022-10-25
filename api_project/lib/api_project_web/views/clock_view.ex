@@ -16,7 +16,8 @@ defmodule ApiProjectWeb.ClockView do
       id: clock.id,
       time: clock.time,
       status: clock.status,
-      user: clock.user
+      user: clock.user, 
+      phrase: "ça"
     }
   end
 end

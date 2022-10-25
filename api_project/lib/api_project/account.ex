@@ -21,6 +21,19 @@ defmodule ApiProject.Account do
     Repo.all(User)
   end
 
+  def list_one_user(%User{} = user) do
+
+    Repo.all(
+      from u in User,
+          where: u.email == ^user.email && u.username == ^user.username
+    )
+
+  end
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
+
   @doc """
   Gets a single user.
 
