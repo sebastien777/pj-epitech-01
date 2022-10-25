@@ -6,8 +6,9 @@ defmodule ApiProjectWeb.Router do
   end
 
   scope "/api", ApiProjectWeb do
-    resources "/users", UserController 
-    resources "/clocks", ClockController 
+    resources "/users", UserController
+    post "/clocks/:user_id", ClockController, :create
+    resources "/clocks", ClockController, except: [:create, :delete, :update]
     resources "/workingtimes", WorkingtimeController 
     pipe_through :api
   end

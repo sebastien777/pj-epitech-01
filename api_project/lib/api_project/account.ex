@@ -25,7 +25,7 @@ defmodule ApiProject.Account do
 
     Repo.all(
       from u in User,
-          where: u.email == ^user.email && u.username == ^user.username
+          where: u.email == ^user.email and u.username == ^user.username
     )
 
   end

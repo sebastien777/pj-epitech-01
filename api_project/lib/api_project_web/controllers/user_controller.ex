@@ -15,9 +15,10 @@ defmodule ApiProjectWeb.UserController do
         username: username
       } 
       users = Account.list_one_user(my_user)
+      IO.inspect(users)
+      IO.inspect("jchjqdbcj")
       render(conn, "index.json", users: users)
 
-      IO.inspect(users)
     else
     users = Account.list_users()
     render(conn, "index.json", users: users)
@@ -25,6 +26,7 @@ defmodule ApiProjectWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    IO.inspect(user_params)
     with {:ok, %User{} = user} <- Account.create_user(user_params) do
       conn
       |> put_status(:created)
