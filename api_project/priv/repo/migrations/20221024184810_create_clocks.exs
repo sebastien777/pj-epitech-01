@@ -3,7 +3,7 @@ defmodule ApiProject.Repo.Migrations.CreateClocks do
 
   def change do
     create table(:clocks) do
-      add :time, :naive_datetime
+      add :time, :naive_datetime, null: false, required: true
       add :status, :boolean, default: false, null: false
       
       timestamps()

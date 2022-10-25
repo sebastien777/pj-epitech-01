@@ -3,8 +3,8 @@ defmodule ApiProject.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
-      add :username, :string
-      add :email, :string
+      add :username, :string, null: false, required: true
+      add :email, :string, null: false, required: true
 
       timestamps()
     end

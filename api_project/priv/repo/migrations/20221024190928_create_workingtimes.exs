@@ -3,8 +3,8 @@ defmodule ApiProject.Repo.Migrations.CreateWorkingtimes do
 
   def change do
     create table(:workingtimes) do
-      add :start, :naive_datetime
-      add :end, :naive_datetime
+      add :start, :naive_datetime, null: false, required: true
+      add :end, :naive_datetime, null: false, required: true
 
       timestamps()
     end
