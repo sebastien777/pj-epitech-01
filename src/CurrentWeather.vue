@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted() {
-    let url = 'http://api.openweathermap.org/data/2.5/weather?q=Lyon&?units=metric&APPID=9810deef941b78c8e89230d43c0610c8'
+    let url = 'http://api.openweathermap.org/data/2.5/weather?q=Lyon&?units=metric&APPID=???'
     axios
       .get(url)
       .then(response => {
