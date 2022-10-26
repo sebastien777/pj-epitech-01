@@ -29,9 +29,6 @@ defmodule ApiProject.Account do
     )
 
   end
-  def delete_user(%User{} = user) do
-    Repo.delete(user)
-  end
 
 
   @doc """

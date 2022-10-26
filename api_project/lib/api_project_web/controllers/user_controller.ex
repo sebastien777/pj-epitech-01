@@ -11,9 +11,9 @@ defmodule ApiProjectWeb.UserController do
    username = params["username"]
    if( email != nil && username != nil ) do
       my_user =  %User{
-        email: email, 
+        email: email,
         username: username
-      } 
+      }
       users = Account.list_one_user(my_user)
       IO.inspect(users)
       IO.inspect("jchjqdbcj")

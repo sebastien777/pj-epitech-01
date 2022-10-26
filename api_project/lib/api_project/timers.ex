@@ -21,6 +21,28 @@ defmodule ApiProject.Timers do
     Repo.all(Clock)
   end
 
+  def list_one_clock(user_id) do
+    Repo.all(
+      from c in Clock,
+        where: c.user == ^user_id,
+        order_by: [desc: c.time],
+        limit: 1
+    )
+  end
+
+  def list_last_clock_in_out(user_id) do
+    Repo.all(
+      from c in Clock,
+        where: c.user == ^user_id,
+        order_by: [desc: c.time],
+        limit: 2
+    )
+  end
+
+  def clock_exists?(user_id) do
+    Repo.exists?(from c in Clock, where: c.user == ^user_id)
+  end
+
   @doc """
   Gets a single clock.
 

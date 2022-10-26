@@ -7,9 +7,15 @@ defmodule ApiProjectWeb.Router do
 
   scope "/api", ApiProjectWeb do
     resources "/users", UserController
+
     post "/clocks/:user_id", ClockController, :create
-    resources "/clocks", ClockController, except: [:create, :delete, :update]
-    resources "/workingtimes", WorkingtimeController 
+    resources "/clocks", ClockController, except: [:create, :delete, :update, :edit, :new]
+
+    get "/workingtimes", WorkingtimeController, :index
+    get "/workingtimes/:user_id", WorkingtimeController, :index_by_user
+    post "/workingtimes/:user_id", WorkingtimeController, :create
+    get "/workingtimes/:user_id/:id", WorkingtimeController, :show_by_user
+    resources "/workingtimes", WorkingtimeController, except: [:create, :index, :new, :edit]
     pipe_through :api
   end
 

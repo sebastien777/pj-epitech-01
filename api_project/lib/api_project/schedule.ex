@@ -21,6 +21,22 @@ defmodule ApiProject.Schedule do
     Repo.all(Workingtime)
   end
 
+  def list_workingtimes_by_user(%Workingtime{} = workingtime) do
+    Repo.all(
+      from w in Workingtime,
+          where: w.user == ^workingtime.user
+    )
+  end
+
+  def list_one_workingtime(%Workingtime{} = workingtime) do
+    Repo.all(
+      from w in Workingtime,
+        where:
+          w.user == ^workingtime.user and w.start >= ^workingtime.start and
+            w.end <= ^workingtime.end
+    )
+  end
+
   @doc """
   Gets a single workingtime.
 
@@ -36,6 +52,11 @@ defmodule ApiProject.Schedule do
 
   """
   def get_workingtime!(id), do: Repo.get!(Workingtime, id)
+
+  def get_workingtime_by_id!(id, user_id)
+  do
+    Repo.get_by!(Workingtime, id: id, user: user_id)
+  end
 
   @doc """
   Creates a workingtime.
