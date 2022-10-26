@@ -1,12 +1,10 @@
 <script setup>
 import { ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 import weathers from "../weathers";
-import WeatherDetail from "./WeatherDetail.vue";
 
 const router = useRouter();
-const route = useRoute();
 
 function changePage() {
   router.push("currentWeather?index=" + current.value);
@@ -14,7 +12,6 @@ function changePage() {
 // reactive state
 const current = ref(0);
 </script>
-
 <template>
   <main>
     <div class="box">
@@ -29,32 +26,10 @@ const current = ref(0);
         </option>
       </select>
       <button @click="changePage">Search</button>
-      {{ current }}
-    </div>
-    <div class="box" @click="changeCurrent">
-      {{ route.query.index }}
-      <WeatherDetail>
-        <template #c
-          >Météo actuelle à {{ weathers[route.query.index].c }}</template
-        >
-        <template #t>{{ weathers[route.query.index].t }}°C</template>
-        <template #d>{{ weathers[route.query.index].d }}</template>
-      </WeatherDetail>
     </div>
   </main>
 </template>
-
 <style scoped>
-ul {
-  list-style-type: none;
-  display: flex;
-  flex-flow: row wrap;
-}
-li {
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-}
 main {
   display: flex;
   align-items: center;
