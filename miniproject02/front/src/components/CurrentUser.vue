@@ -12,15 +12,23 @@ const notify = ref("");
 async function select() {
   notify.value = await user.select(email.value, username.value);
 }
-function create() {
-  console.log("create");
+async function create() {
+  notify.value = await user.create(email.value, username.value);
+}
+async function deleteUser() {
+  notify.value = await user.delete();
+}
+async function empty() {
+  notify.value = await user.empty();
 }
 </script>
 
 <template>
-  CONTACT {{ user.current.username }}
   <div v-if="user.isSetted">
     <!-- SELECTED -->
+    <div>username: {{ user.current.username }} ({{ user.current.id }})</div>
+    <button @click="deleteUser">Delete</button>
+    <button @click="empty">find another</button>
   </div>
   <div v-else>
     <!-- UNSELECTED -->
